@@ -78,7 +78,7 @@ export function decodeUrlParameter(param) {
  ```
  * **
  */
-export function toolsGetUrlRelativePath(url) {
+export function getUrlRelativePath(url) {
   // 判断是否数组
   if (url instanceof Array) {
     const arrayUrl = []; // 去除域名后的数组
@@ -124,7 +124,7 @@ export function toolsGetUrlRelativePath(url) {
  * @param {String} str 
  * @returns {String}
  */
-export function htmlspecialchars_decode(str) {
+export function htmlspecialcharsDecode(str) {
   str = str.replace(/&amp;/g, '&');
   str = str.replace(/&lt;/g, '<');
   str = str.replace(/&gt;/g, '>');
