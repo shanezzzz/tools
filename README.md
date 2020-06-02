@@ -22,3 +22,8 @@ getUrlRelativePath()
 ```
 htmlSpecialcharsDecode()
 ```
+
+### js原生页面平滑滚动回顶部
+```
+goTop()
+```

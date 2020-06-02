@@ -132,3 +132,38 @@ export function htmlspecialcharsDecode(str) {
   str = str.replace(/&#039;/g, "'");
   return str;
 }
+
+/**
+ * js原生页面平滑滚动回顶部
+ * window.requestAnimationFrame(callback) // 每秒执行60次该callback
+ */
+export function goTop() {
+  const top = document.documentElement.scrollTop || document.body.scrollTop;
+  if (top > 0) {
+    window.requestAnimationFrame(goTop)
+    window.scrollTo(0, top - top / 8);
+  }
+}
+
+/**
+ * 节流
+ */
+export function debounce(fn, delay) {
+  let timer; // 定时器
+
+  /**
+   * 闭包，外部执行的函数
+   * @{any}...args 函数调用时传的参数
+   */
+  return function(...args) {
+    let context = this; // 函数执行时的this绑定
+
+    // 当函数再次执行时，重置定时器
+    timer && clearTimeout(timer);
+
+    // 延时执行函数
+    timer = setTimeout(() => {
+      fn.apply(context, args)
+    }, delay);
+  }
+}
