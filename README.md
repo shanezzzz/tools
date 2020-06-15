@@ -27,3 +27,8 @@ htmlSpecialcharsDecode()
 ```
 goTop()
 ```
+
+### 深拷贝
+```
+deepClone()
+```
