@@ -167,3 +167,26 @@ export function debounce(fn, delay) {
     }, delay);
   }
 }
+
+/**
+ * 深拷贝
+ */
+export function deepClone(obj) {
+  // 是值类型就返回
+  if (typeof obj != 'object' || obj == null) {
+    return obj
+  }
+
+  // 初始化返回结果
+  let result
+  obj instanceof Array ? result = [] : result = {}
+
+  // 引用类型
+  for (let key in obj) {
+    // 保证key不是原型的属性,除了值都不需要拷贝
+    if (obj.hasOwnProperty(key)) {
+      result[key] = deepClone(obj[key]) // 递归调用
+    }
+  }
+  return result
+}
