@@ -98,6 +98,7 @@ obj.lenght // 3
 
 ## Array
 - Array.from()  
+
   *将一个伪数组和可遍历对象(部署了lterator接口的对象：Set、Map、Array)转为数组（浅拷贝）*
   *Array.from([arrayLike[, mapFn[, thisAry]]])*
   *Array.from接受三个参数：arrayLike：被转换的对象（必填）；mapFn：map函数（可选）；thisAry：mapFn函数中的this指向对象（可选）*
