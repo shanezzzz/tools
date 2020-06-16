@@ -72,7 +72,7 @@ typeof null // object
 ```
 
 ## 判断是否为数组
-** instanceof / isArray **  
+**instanceof / isArray**  
 
 ```
 const arr = []
@@ -98,4 +98,63 @@ obj.lenght // 3
 
 ## Array
 - Array.from()
-** **
+  *将一个伪数组和可遍历对象(部署了lterator接口的对象：Set、Map、Array)转为数组（浅拷贝）*
+  *Array.from([arrayLike[, mapFn[, thisAry]]])*
+  *Array.from接受三个参数：arrayLike：被转换的对象（必填）；mapFn：map函数（可选）；thisAry：mapFn函数中的this指向对象（可选）*
+
+  1. 字符串  
+  ```
+  Array.from('shane') // s,h,a,n,e
+  ```
+
+  2. 伪数组
+  ```
+  const obj = {
+    0: 'a',
+    2: 'b',
+    length: 2
+  }
+  Array.from(obj) // [a, b]
+  const obj1 = {
+    0: 'a',
+    1: 'b',
+    length: 5
+  }
+  Array.from(obj1) // [a,b,undefind,undefind,undefind] 会根据length来判断数组位数
+  const obj2 = {
+    3: 'a',
+    5: 'b',
+    1: 'c'
+    length: 3
+  }
+  Array.from(obj2) // [undefind,c,undefind] 索引不按升序排列会出现找不到下标返回undefind
+  ```
+
+  3. mapFn参数
+  ```
+  const obj = {
+    0: 'a',
+    1: 'b'
+    2: 'c',
+    lenght: 3
+  }
+  Array.from(obj, (n) => n + 1) // [a1, b1, c1]
+  ```
+
+  4. thisArg参数
+  ```
+  const obj = {
+    0: 'a',
+    1: 'b'
+    2: 'c',
+    lenght: 3
+  }
+  const thisObj = {
+    handel: function(x) {
+      return x + 1
+    }
+  }
+  Array.from(obj, (x) => {
+    return this.handel(x) // this指向thisObj，所以有handle这个方法
+  }, thisObj) // [a1, b1, c1]
+  ```
