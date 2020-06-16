@@ -1,6 +1,6 @@
 ## typeof
 
-** typeof可以识别值类型和函数，引用类型识别为object.返回的都是string **
+*typeof可以识别值类型和函数，引用类型识别为object.返回的都是string*
 
 1. 值类型  
 ```
@@ -17,7 +17,7 @@
   typeof function () {} // function
 ```
 
-3.引用类型  
+3. 引用类型  
 ```
   typeof null // objeck
   typeof ['a', 'b'] // object
@@ -26,10 +26,10 @@
 
 ## ==和===
 
-** 除了==null之外其他都是用=== **
+*除了==null之外其他都是用===*
 
 ## instanceof 
-** 检测构造函数的protype属性是否出现在某个对象的原型链 **  
+*检测构造函数的protype属性是否出现在某个对象的原型链*  
 
 ```
 const arr = []
@@ -41,7 +41,7 @@ obj instanceof Object // true
 ```
 
 ## hasOwnProperty()
-** 检测一个对象是否含有特定的自身属性(继承属性返回false，如：toString、hasOwnProperty) **  
+*检测一个对象是否含有特定的自身属性(继承属性返回false，如：toString、hasOwnProperty)*  
 
 ```
 const obj = {}
@@ -56,7 +56,7 @@ obj.hasOwnProperty('hasOwnProperty') // false
 ```
 
 ## typeof
-** 判断参数是什么类型的实例 **  
+*判断参数是什么类型的实例*  
 
 ```
 // 基本类型返回对相应的类型
@@ -81,8 +81,8 @@ Array.isArray(arr) // true
 ```
 
 ## 伪数组
-** 一个对象所有的键名都为整数或者为零，并且有length属性 **  
-** 函数的arguments对象，DOM元素集合，字符串都可以算是伪数组 **  
+*一个对象所有的键名都为整数或者为零，并且有length属性*  
+*函数的arguments对象，DOM元素集合，字符串都可以算是伪数组*  
 
 ```
 const obj = {
