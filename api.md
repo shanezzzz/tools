@@ -102,7 +102,7 @@ obj.lenght // 3
   *将一个伪数组和可遍历对象(部署了lterator接口的对象：Set、Map、Array)转为数组（浅拷贝）*  
 
   *Array.from([arrayLike[, mapFn[, thisAry]]])*  
-  
+
   *Array.from接受三个参数：arrayLike：被转换的对象（必填）；mapFn：map函数（可选）；thisAry：mapFn函数中的this指向对象（可选）*
 
   1. 字符串  
@@ -110,7 +110,7 @@ obj.lenght // 3
   Array.from('shane') // s,h,a,n,e
   ```
 
-  2. 伪数组
+  2. 伪数组  
   ```
   const obj = {
     0: 'a',
@@ -160,4 +160,130 @@ obj.lenght // 3
   Array.from(obj, (x) => {
     return this.handel(x) // this指向thisObj，所以有handle这个方法
   }, thisObj) // [a1, b1, c1]
+  ```
+
+- Array.isArray()  
+
+ *判断是否是数组*
+
+ ```
+const arr = []
+const obj = {}
+Array.isArray(arr) // true
+Array.isArray(obj) // false
+ ```
+
+- Array.of()
+
+  *创建一个新的数组*
+
+  *Array.of(element1[, element2[, elementN]])*
+
+  ```
+  Array.of(1,2,3) // [1,2,3]
+  Array.of(3) // [3] // 正常生成3
+  // 与Array的区别
+  Array(1,2,3) // [1,2,3]
+  Array(3) // [,,] 当只传一个参数的时候，就将参数当长度并生产该参数长度的空位empty
+  ```
+
+- Array.prototype.concat()
+
+  *合并多个数组，不改变原数组，而返回一个新数组。当返回的新数组的值改变时，不会印象原数组*
+
+  ```
+  const arr1 = [1,2,3]
+  const arr2 = [4,5,6]
+  const arr3 = arr1.concat(arr2) // [1,2,3,4,5,6]
+  const arr4 = arr3.concat(arr1, arr2) // [1,2,3,4,5,6,1,2,3,4,5,6]
+  ```
+
+- Array.prototype.copyWithin()
+
+  *浅复制数组的一部分到同数组的另一个位置，并返回，不会改变数组的长度，但会改变原数组*
+
+  ```
+  const arr1 = ['a', 'b', 'c', 'd', 'e']
+  arr1.copyWithin(0, 3, 4) // ['d', 'b', 'c', 'd', 'e'] 
+  ```
+
+- Array.prototype.entries()
+
+  *返回一个新的Array Iterator, 里面包含一个next()方法，该方法返回一个对象：next.done:用于指示迭代器是否完成：在每次迭代时进行更新而且都是false; next.value: [key, value]的数组*
+
+  ```
+  const arr = ['a', 'b', 'c', 'd']
+  const iterator = arr.entries()
+  iterator.next() // { done: false, value: [0, a] }
+  iterator.next() // { done: false, value: [1, b] }
+  ```
+
+- Array.prototype.every()
+
+  *检测数组里面每个值是否通过指定的函数测试，返回布尔值*
+
+  ```
+  const arr = [1,2,3,4]
+  arr.every((e) => e > 0) // true
+  arr.every((e) => e > 1) // false 只有一个不通过也返回false
+  ```
+
+- Array.prototype.fill()
+
+  *在原数组里面填充一个固定的值，改变原数组，长度受到原数组限制。*
+  *fill(value, [start, [end ]]) 三个参数：value：用来填充的值，start数组开始位置，end数组结束位置，负数则从后面开始*
+
+  ```
+  const arr = [1, 2, 3]
+  arr.fill('a', 0 , 2) // ['a', 'a', 3]
+  arr.fill('b', 0, 10) // ['b', 'b', 'b'] 当参数超过原数组时，只填充原数组的长度内的值
+  ```
+
+- Array.prototype.filter()
+
+  *遍历每项并返回通过通过测试的项，返回新数组，不改变原数组*
+
+  ```
+  let arr = [1,2,3,4]
+  arr.filter((e) => e > 2) // [3, 4]
+  // 实现搜索功能
+  const fn = (e) => {
+    arr.filter(item => {
+      return item.indexOf(e) > -1
+    })
+  }
+  fn(2) // [2]
+  ```
+
+- Array.prototype.find()
+
+  *查找数组中第一个匹配的值，若匹配成功则返回该值，否则返回undefind*
+
+  ```
+  let arr = [1,2,3]
+  arr.find(e => e > 1) // 2 是返回值，findIndex()是返回下标
+  ```
+
+- Array.prototype.findIndex()
+
+  *查找数组中第一个匹配的值的下标，若匹配成功则返回该值的下表，否则返回undefind*
+
+  ```
+  let arr =[1,2,3]
+  arr.findIndex(e => e > 1) // 1 是返回下标
+  ```
+
+- Array.prototype.flat()
+
+  *扁平化一个数组，不改变原数组，会ruturn,每次只扁平一层*
+
+  ```
+  let arr = [1,2,[3,4]]
+  arr.flat() // [1,2,3,4]
+  // 扁平空数组
+  let arr1 = [1,2, ,3]
+  arr1.flat() // [1,2,3]
+  // 只扁平一层
+  let arr2 = [1,2,[3,[4]]]
+  arr2.flat() // [1,2,3,[4]]
   ```
