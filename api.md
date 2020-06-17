@@ -97,7 +97,7 @@ obj.lenght // 3
 ```
 
 ## Array
-- Array.from()  
+- Array.from()
 
   *将一个伪数组和可遍历对象(部署了lterator接口的对象：Set、Map、Array)转为数组（浅拷贝）*  
 
@@ -162,7 +162,7 @@ obj.lenght // 3
   }, thisObj) // [a1, b1, c1]
   ```
 
-- Array.isArray()  
+- Array.isArray()
 
  *判断是否是数组*
 
@@ -287,3 +287,5 @@ Array.isArray(obj) // false
   let arr2 = [1,2,[3,[4]]]
   arr2.flat() // [1,2,3,[4]]
   ```
+
+- Array.prototype.flatMap()
