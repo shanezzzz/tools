@@ -164,14 +164,14 @@ obj.lenght // 3
 
 - Array.isArray()
 
- *判断是否是数组*
+  *判断是否是数组*
 
- ```
-const arr = []
-const obj = {}
-Array.isArray(arr) // true
-Array.isArray(obj) // false
- ```
+  ```
+  const arr = []
+  const obj = {}
+  Array.isArray(arr) // true
+  Array.isArray(obj) // false
+  ```
 
 - Array.of()
 
