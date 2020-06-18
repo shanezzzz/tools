@@ -289,3 +289,106 @@ obj.lenght // 3
   ```
 
 - Array.prototype.flatMap()
+
+  *便利数组内的每个值，并进行相对应操作，返回新数组，不该变原数组*
+
+  ```
+  let arr =[1,2,3]
+  arr.flatMap(e => {
+    e + 1
+  }) // 2,3,4
+  // 代替方案 reduce()&concat()
+  ```
+
+- Array.prototype.forEach()
+
+  *遍历数组 ，与for循环相同，没有return，会改变原数组/与map不同点，map有return不会改变原数组*
+  *forEach(item, index => {item,index});itme:遍历的数组元素，index：元素的下标*
+
+  ```
+  let arr = [1,2,3]
+  arr.forEach(e => {
+    console.log(e) // 1,2,3
+  })
+  ```
+
+- Array.prototype.includes()
+
+ *检查数组里面有没有包含这个值，有返回true，否则false。注意这个值要全部匹配才会返回*
+ *includes(item, index);itme:需要匹配的值，index需要匹配的下标*
+
+  ```
+  let arr = ['apple', 'banana']
+  arr.includes('apple') // true
+  arr.includes('a') // false 要全匹配
+  arr.includes('apple', 0) // true
+  arr.includes('apple', 1) // false 下标不匹配
+  ```
+
+- Array.prototype.indexOf()
+
+  *查找数组中第一个匹配的值，并返回下标，若没有匹配则返回-1*  
+  *indexOf(itme, start); itme:需要查找的值，start：开始查找的下标*
+
+  ```
+  let arr = ['a','b','a']
+  arr.indexOf('a') // 0
+  arr.indexOf('c') // -1
+  arr.indexOf('a', 1) // 2
+  ```
+
+- Array.prototype.join()
+
+  *将数组/类数组内的每个项连成一个字符串，并用给到的字符添加到每项间隔中*
+
+  ```
+  let arr = ['a', 'b', 'c']
+  arr.join(',') // 'a,b,c'
+  ```
+
+- Array.prototype.keys()
+
+  *方法返回一个包含数组中每个索引键的Array Iterator对象*
+
+- Array.prototype.lastIndexOf()
+
+  *从最后一项开始查找数组中第一个匹配合适的值，并返回下标，无匹配则返回-1；返回的下标是正序的*
+
+  ```
+  let arr = ['a', 'b', 'c', 'd']
+  arr.lastIndexOf('c') // 2
+  arr.lastIndexOf('e') // -1
+  ```
+
+- Array.prototype.map()
+
+  *与forEach相同，但这个有return，不会改变原数组*
+
+  ```
+  let arr = [1,2,3]
+  arr.map(e = > e + 1) // [2,3,4]
+  ```
+
+- Array.prototype.pop()
+
+  *删除数组中最后一项，并返回该项。修改原数组;数组为空是返回undefind*
+
+  ```
+  let arr = ['a', 'b', 'c']
+  arr.pop() // 'c'
+  console.log(arr) // ['a', 'b']
+  ```
+
+- Array.prototype.push()
+
+  *在数组最后添加一个指定的值，并返回添加后的该数组长度，改变原数组*
+
+  ```
+  let arr = ['a', 'b', 'c']
+  arr.push('d') // 3
+  console.log(arr) // ['a', 'b', 'c', 'd']
+  ```
+
+- Array.prototype.reduce()
+
+  **
