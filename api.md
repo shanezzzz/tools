@@ -391,4 +391,74 @@ obj.lenght // 3
 
 - Array.prototype.reduce()
 
-  **
+  *将数组中的每个元素执行提供的函数方法，并每执行一项将这一项结果返回到下一项，直到每个元素都执行完*
+  *reduce((total, curValue, curIndex, arr), initiaValue); total:必填，初始值/计算结束后返回的值;curValue:必填，当前元素；curIndex：可选，当前元素的索引；arr：可选，当前元素所属数组的对象；initalValue：可选，传递给函数的初始值，相当于total的初始值，若该参数不填则total的初始值默认为0*
+
+  ```
+  // 1、数组求和
+  let arr = [1,2,3]
+  arr.reduce((total, curValue) => total + curValue) // 6 0+1+2+3 = 6
+  arr.reduce((total, curValue) => total + curValue, 10) // 6 传递10给total，相当于total等于10而不是0，即10+1+2+3 = 16
+  // 2、对象数组求和
+  let obj = [{a:'a', s: 1},{a:'b', s: 2},{a:'c', s 3}]
+  obj.reduce((total, curValue) => total + curValue, 0) // 6
+  obj.reduce((total, curValue) => total + curValue, '0') // '0123' // 因为total初始化为字符串，那么后面累加的都是字符串
+  // 3、数组最大值
+  arr.reduce((total, curValue) => total > curValue ? total : curValue) // 3 
+  // 4、查找字符串中字母出现的字数
+  let str = 'aaaaabcd'
+  str.split('').reduce((total, curValue) => {total[curValue] ? total[curValue]++ : total[curValue] = 1; return total}, {}) // {a:5,b:1,c:1}
+  // 5、数组转对象
+  let arr = [{name: 's', id: 1},{name: 'h', id: 2},{name: 'e', id: 3}]
+  arr.reduce((total, curValue) => total[curValue.id] = curValue, {}) // {1:{name: 's', id: 1},{name: 'h', id: 2}}
+  // 6、扁平两维数组
+  let arr = [[1,2], [3,4], [5]]
+  arr.reduce((total, curValue) => {
+    total.concat(curValue)
+  }, []) // [1,2,3,4,5]
+  ```
+
+- Array.prototype.reduceRigth()
+
+  *与reduce一样，这是从右往左*
+
+- Array.prototype.reverse()
+
+  *将数组中元素颠倒，并返回该数组，改变原数组*
+
+  ```
+  let arr = [1,2,3]
+  arr.reverse() // [3,2,1]
+  ```
+
+- Array.prototype.shift()
+
+  *删除数组中第一个元素，并返回，改变原数组*
+
+  ```
+  let arr = [1,2,3]
+  arr.shift() // [2,3]
+  ```
+
+- Array.prototype.slice()
+
+  *返回一个被由指定开始到指定结束的数组元素，浅拷贝，不会改变原数组*
+  *slice(begin, end);begin:数组中开始的索引，end：结束索引，默认数组长度*
+
+  ```
+  let arr = [1,2,3,4,5]
+  arr.slice(1,2) // [2]
+  arr.slice(3) // [4, 5] // 不传end，默认为数组长度
+  ```
+
+- Array.prototype.some()
+
+  *判断数组中是否至少有一项通过判断，有返回true，否则false*
+
+  ```
+  let arr = [1,2,3]
+  arr.some(e => e === 3) // true
+  arr.some(e => e > 3) // false
+  ```
+
+- Array.prototype.sort()
