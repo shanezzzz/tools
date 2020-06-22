@@ -462,3 +462,51 @@ obj.lenght // 3
   ```
 
 - Array.prototype.sort()
+
+  *用原地算法对数组进行排序，或指定某种算法进行排序.对原数组进行修改*
+  *sort([comparaFunction])；可选参数，指定以某种算法进行排序*
+
+  ```
+  let arr = [2,5,1,3]
+  arr.sort() // [1,2,3,5]
+  arr.sort((a, b) => b - a) // [5,3,2,1]
+  ```
+
+- Array.prototype.splice()
+
+  *对数组进行修改或替换现有元素。修改原数组*
+  *splice(start, deleteCount, itme1, itme2...);接受多个参数，deleteCount和item都是可选参数。start：要操作的数组下标；deleteCount：要操作的个数；item：要添加的新元素，从start开始*
+
+  ```
+  let arr = ['a', 'b', 'c', 'd']
+  arr.splice(0, 1) // ['b', 'c', 'd'] 从第0个开始删除，删除一个元素 
+  arr.splice(2, 1) // ['b', 'c'] 从第2个元素开始删除，删除一个元素
+  arr.splice(2, 0, 'f', 'g') //  ['b', 'c', 'f', 'g'] 从第2个位置开始插入，删除0个元素
+  ```
+
+- Array.prototype.toLocaleString()
+
+  *将数组元素转为字符串，不改变原数组*
+
+  ```
+  let arr = ['a', 'b', 'c']
+  arr.toLocaleString() // 'a,b,c'
+  ```
+
+- Array.prototype.toString()
+
+  *将数组中的元素转为字符串*
+
+  ```
+  let arr = ['a', 'b', 'c']
+  arr.toString() // 'a,b,c'
+  ```
+
+- Array.prototype.unshift()
+
+  *在数组开头添加多个元素，改变原数组*
+
+  ```
+  let arr = [1,2,3]
+  arr.unshift(5,6,7) // [5,6,7,1,2,3]
+  ```
