@@ -761,3 +761,50 @@ obj.lenght // 3
   let arr = [1,2,3]
   arr.toLocaleString() // '1,2,3'
   ```
+
+- Object.toString()
+
+  *返回一个表示该对象的字符串*
+
+  ```
+  let obj = {}
+  obj.toString() // [object Object]
+  // 检测对象类型
+  let arr = []
+  let s = 'abc'
+  toString.call(obj) // [object Obejct]
+  toString.call(arr) // [object Array]
+  toString.call(s) // [obejct String]
+  toString.call(new Date) // [object Date]
+  toString.call(undefinde) // [object Undefinde]
+  toString.call(null) // [object Null]
+  ```
+
+- Object.prototype.valueOf()
+
+  *返回指定对象的原始值*
+
+  ```
+  let obj = {a:1}
+  obj.valueOf() // {a:1}
+  ```
+
+- Object.seal()
+
+  *不可在对象中添加新属性*
+
+  ```
+  let obj = {a:1}
+  Object.seal(obj)
+  obj['b'] = 2
+  obj // {a:1}
+  ```
+
+- Obejct.values()
+
+  *返回对象的中值*
+
+  ```
+  let obj = {a:1, b:2, c:'c'}
+  Object.values(obj) // [1,2,'c']
+  ```
