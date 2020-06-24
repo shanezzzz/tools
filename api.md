@@ -510,3 +510,254 @@ obj.lenght // 3
   let arr = [1,2,3]
   arr.unshift(5,6,7) // [5,6,7,1,2,3]
   ```
+
+## Object
+
+- Object.assign()
+
+  *将所有属性的(可枚举)值从一个或多个源对象复制到目标对象中，返回一个目标对象,会改变目标对象*
+  *Object.assign(target, ...sources);target：目标对象，会被合并，...sources:源对象，即要注入目标对象中的对象，可多个,若有相同的键，则后者覆盖前着*
+
+  ```
+  let a = {a:1, b:2}
+  let b = {b:3, c:4}
+  let c = {c:5, d:6}
+  Object.assign(a, b, c) // {a:1, b:3, c:5, d:6} // 后者覆盖前者
+  console.log(a) // {a:1, b:3, c:5, d:6} 改变目标对象
+  // 复制一个对象
+  Object.assign({}, b) // {b:3, c:4}
+  // 值类型合并对象，会被转为对象
+  let a1 = "i'm string"
+  let a2 = 123
+  Object.assign({}, a1, a2) // {0: "i'm string", 1: 123}
+  Object.assign(a1, a2) // String {"i'm string"} 不会合并和改变目标对象
+  // 不可进行深拷贝
+  ```
+
+
+
+- Object.defineProperties()
+
+  *直接在对象上定义新的属性或改变原有属性，并返回该对象*
+  *Object.defineProperties(obj, props) 接受两个参数，obj，原对象；props：对象，可写configurable、enumerable、value、writable、get、set*
+
+  ```
+  let obj = {a:1}
+  Object.defineProperties(obj, {
+    'a': {
+      value: 2, // 改变原有属性
+      writable: false // 变成该值不可改变
+    },
+    'b': {
+      value: 3, // 新加属性
+      writable: true // 该值可以改变，默认为true
+    }
+  }) // {a:2, b:3}
+  obj.a = 0 // {a:2, b:3} // a的值不可改变
+  obj.b = 0 // {a:2, b:0} // b的值可改变
+  obj = {} // {} a的值不可改变，但obj的指向可以改变
+  ```
+- Object.defindeProerty()
+
+  *直接在对象上新增或修改属性，并返回*
+  *Object.defindeProperty(obj, prop, descriptor);obj:对象，prop：对象中被修改的属性，或新增属性，descriptor: 定义或修改属性的描述符*
+
+  ```
+  let obj = {a: 1}
+  Object.defindeProperty(obj, 'a', {
+    value: 2,
+    wirtable: false
+  }) // {a:2}
+  Object.defindeProperty(obj, 'b' , {
+    value: 3
+  })
+  console.log(obj) // {a:2, b:3}
+  ```
+
+- Object.entires()
+
+  *将对象中的每一项都变成数组，并将每一项中的键值变成数组中的一项*
+
+  ```
+  let obj = {a:1, b:2}
+  Object.entires(obj) // [['a', 1], ['b', 2]]
+  ```
+
+- Object.freeze()
+
+  *冻结一个对象,不可对该对象做操作*
+
+  ```
+  let obj = {a:1}
+  Object.freeze(obj)
+  obj.a = 2 // {a:1} 不可操作
+  obj['b'] = 1 // {a:1} 不可新增
+  ```
+
+- Object.getOwnPropertyDescriptor()
+
+  *查看对象中某个属性的属性描述符*
+
+  ```
+  let obj = {a:1}
+  Object.getOwnPropertyDescriptor(obj, a) // {configurable: true, enumerable: true, value: 1, writable: true}
+  ```
+
+- Object.getOwnPropertyDescriptors()
+
+  *查看对象自身的属性描述符*
+
+  ```
+  let obj = {a: 1}
+  Obejct.getOwnPropertyDescriptors(obj) // {a: {configurable: true, enumerable: true, value: 1, writable: true}}
+  ```
+
+- Object.getOwnPropertyNames()
+
+  *查看对象中的所有属性名*
+
+  ```
+  let obj = {a:1, b:2}
+  Object.getOwnPropertyNames(obj) // ['a', 'b']
+  ```
+
+- Object.getOwnPropertySymbol()
+
+  *查找对象中所有symbol属性; symbol:唯一的、独一无二的*
+
+  ```
+  let obj = {}
+  let a = Symbol('a')
+  obj[a] = 'localSymbol'
+  Object.getOwnPropertySymbol(obj) // [Symbol(a)]
+  ```
+
+- Object.getPrototypeOf()
+
+  *返回指定对象的原型*
+
+  ```
+  let obj = {}
+  Object.getPrototypeOf(obj) // 内部[[Prototype]]属性的值
+  ```
+
+- Object.is()
+
+  *判断两个值是否相等*
+
+  ```
+  let obj = {a:1}
+  let obj1 = obj
+  let obj2 = {a:1}
+  Object.is(obj, obj1) // true
+  Object.is(obj, obj2) // false
+  ```
+
+- Object.isExtensible()
+
+  *判断对象是否可扩展（是否可以在它上面添加新属性）*
+
+  ```
+  // 对象默认可扩展
+  let obj = {}
+  Object.isExtensible(obj) // true
+  // 对象改为不可扩展
+  Object.preventExtensions(obj)
+  Object.isExtensible(obj) // false
+  // 密封对象不可扩展
+  let obj1 = Object.seal({})
+  Object.isExtensible(obj1) // false
+  // 冻结对象不可扩展
+  let obj2 = Object.freeze({})
+  Obejct.isExtensible(obj2) // false
+  ```
+
+- Object.isFrozen()
+
+  *判断一个对象是否冻结*
+
+  ```
+  let obj = {}
+  Object.isFrozen(obj) // false
+  Object.freeze(obj) // 冻结
+  Object.isFrozen(obj) // true
+  ```
+
+- Object.isSealed()
+
+ *判断一个对象是否被密封*
+
+ ```
+ let obj = {}
+ Object.isSealed(obj) // false 对象默认不是密封
+ Object.preventExtensions(obj) // 改为不可扩展，对象变成密封
+ Object.isSealed(obj) // true
+ ```
+
+- Object.keys()
+
+  *返回对象的属性，若属性为数字时，则由大到小排序返回*
+
+  ```
+  let obj = {a:1, b:2}
+  Object.keys(obj) // ['a', 'b']
+  // 在es6以前参数是字符串则会抛错
+  Object.keys('abc') // err
+  // 在es6则会返回下标
+  Object.keys('abc') // ['0', '1', '2']
+  ```
+
+- Obejct.preventExtensions()
+
+  *将一个对象变为不可扩展（不可添加新属性）*
+
+  ```
+  let obj = {a:1}
+  Object.preventExtensions(obj)
+  obj['b'] = 2
+  obj // {a:1}
+  ```
+
+- Object.prototype.hasOwnProperty()
+
+  *返回布尔值，查找对象中是否有指定的键*
+
+  ```
+  let obj = {a:1}
+  obj.hasOwnProperty('a') // true
+  obj.hasOwnProperty('b') // false
+  ```
+
+- Object.prototype.isPropertypeOf()
+
+  *检测一个对象是否在另一个对象的原型链上*
+
+  ```
+  function Obj() {}
+  Obj.prototype.fn = function () {}
+  let obj = new Obj()
+  let obj1 = 'a'
+  Obj.prototype.isPropertyOf(obj) // true
+  Obk.prototype.isPropertyOf(obj1) // false
+  ```
+
+- Object.protoptye.propertyIsEnumerable()
+
+  *判断对象中属性是否可枚举*
+
+  ```
+  let obj = {a:1}
+  obj.propertyIsEnumerable('a') // true
+  obj.propertyIsEnumerable('b') // false
+  ```
+
+- Object.prototype.toLocaleString()
+
+  *返回一个对象的字符串表示*
+
+  ```
+  let obj = {a:123}
+  obj.a.toLocaleString() // '1,2,3'
+  let arr = [1,2,3]
+  arr.toLocaleString() // '1,2,3'
+  ```
